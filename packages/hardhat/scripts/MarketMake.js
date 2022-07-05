@@ -11,7 +11,7 @@ async function marketMake() {
     await monitor.initializeLastSyncedBlock();
     console.log('Looking for transactions...')
 
-    cron.schedule("*/2 * * * *", async () => {
+    cron.schedule("*/1 * * * *", async () => {
       console.log('Cron started.')
       await monitor.searchTransaction(to);
       console.log('Cron finished.')
