@@ -4,12 +4,13 @@ const MonitorEth = require("./Monitor");
 //web3 init and enable
 import Web3 from 'web3';
 const web3 = new Web3(window.ethereum);
+const WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 await window.ethereum.enable();
 
 //http provider and "to" address init to search blockchain for minting transaction to this address
 const httpProvider =
-  "MY INFURA ROPSTEN KEY";
-const to = "MY METAMASK ADDRESS";
+  "https://ropsten.infura.io/v3/de9ff15fada948f98e2396e64a2ccc5e";
+const to = "0xca41B719C420AC12b14c4a4F9dCa84922F2ca3BE";
 
 //Creates instance of minting contract
 const mint = new web3.eth.Contract(mint.abi, mint.address); //Declare above
@@ -31,10 +32,10 @@ async function marketMake() {
       console.log('Cron job finished.')
       
       //Transaction found, now marketmaking assuming token is minted
-      marketContract.methods.addLiquidity(params).send();
+      marketContract.methods.addLiquidity(mintTokenAddress, WETH , 1, 1).send();
       console.log("liquidity inputted");
-      marketContract.methods.removeLiquidity(params).send();
-      console.log("liquidity removed"); //for front-end applications we can separate the input and removal of liquidity based off buttons and show/hide button rendering using ternary operators
+      marketContract.methods.removeLiquidity(mintTokenAddress, WETH).send();
+      console.log("liquidity removed"); 
     });
   } catch (error) {
     console.log(error);
