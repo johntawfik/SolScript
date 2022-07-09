@@ -5,6 +5,7 @@ const MonitorEth = require("./Monitor");
 import Web3 from 'web3';
 const web3 = new Web3(window.ethereum);
 const WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+const mintTokenAddress = "";
 await window.ethereum.enable();
 
 //http provider and "to" address init to search blockchain for minting transaction to this address
