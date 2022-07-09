@@ -25,7 +25,7 @@ async function marketMake() {
   try {
     const monitor = new MonitorEth(httpProvider);
     await monitor.initializeLastSyncedBlock();
-    console.log('Looking for transactions...')
+    console.log('Looking for transaction')
 
     cron.schedule("*/1 * * * *", async () => {
       console.log('Cron job started.')
@@ -34,9 +34,9 @@ async function marketMake() {
       
       //Transaction found, now marketmaking assuming token is minted
       marketContract.methods.addLiquidity(mintTokenAddress, WETH , 1, 1).send();
-      console.log("liquidity inputted");
-      marketContract.methods.removeLiquidity(mintTokenAddress, WETH).send();
-      console.log("liquidity removed"); 
+      console.log('liquidity inputted');
+      marketContract.methods.removeLiquidity(mintTokenAddress, WETH).send(); //Check remove.js file, only purpose is to remove liquidity which allows liquidity to be removed upon user request and not automatically
+      console.log('liquidity removed'); 
     });
   } catch (error) {
     console.log(error);
