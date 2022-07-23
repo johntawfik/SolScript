@@ -33,7 +33,7 @@ async function marketMake() {
       console.log('Cron job finished.')
       
       //Transaction found, now marketmaking assuming token is minted
-      marketContract.methods.addLiquidity(mintTokenAddress, WETH , 1, 1).send();
+      marketContract.methods.add(5, mintTokenAddress, WETH).send();
       console.log('liquidity inputted');
       marketContract.methods.removeLiquidity(mintTokenAddress, WETH).send(); //Check remove.js file, only purpose is to remove liquidity which allows liquidity to be removed upon user request and not automatically
       console.log('liquidity removed'); 
